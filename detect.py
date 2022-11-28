@@ -14,6 +14,19 @@ from utils.general import check_img_size, check_requirements, check_imshow, non_
 from utils.plots import plot_one_box
 from utils.torch_utils import select_device, load_classifier, time_synchronized, TracedModel
 
+ 
+def msgshowww(str,isWebcam):
+    # print (f'{str}------------------------------------------')
+    # print()
+    if isWebcam :
+        x = str.split(',')
+        for i in x :
+            if i.find('person') > -1 :
+                i =i.replace("0:", "")
+                print(f'共{i.split()[0]}人')
+            
+
+
  # agnostic_nms=False, augment=False, classes=None, conf_thres=0.25, device='', exist_ok=False, img_size=640, iou_thres=0.45, name='exp', no_trace=False, nosave=False, 
     # project='runs/detect', save_conf=False, save_txt=False, source='inference\\images\\bus.jpg', update=False, view_img=False, weights=['yolov7.pt']
 def detect_code(inputsource, save_img=False ):
@@ -155,6 +168,8 @@ def detect_code(inputsource, save_img=False ):
             # Print time (inference + NMS)
             print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
             returnStr = s
+            msgshowww(returnStr,webcam)
+            time.sleep(1)
 
             # Stream results
             if view_img:
@@ -303,6 +318,7 @@ def detect(save_img=False):
 
             # Print time (inference + NMS)
             print(f'{s}Done. ({(1E3 * (t2 - t1)):.1f}ms) Inference, ({(1E3 * (t3 - t2)):.1f}ms) NMS')
+            msgshowww(s,webcam)
 
             # Stream results
             if view_img:
