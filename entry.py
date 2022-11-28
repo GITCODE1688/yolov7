@@ -20,7 +20,7 @@ except:
 inputimg='inference\\images\istockphoto-522785736-612x612.jpg'
 
 inputimg='inference\\images\crowded-mountain-summit-colorado_h.webp'
-inputimg='inference\\images\desktop.jpg'
+inputimg='inference\\images\img_e0774.jpg'
 str = detect.detect_code(inputimg,False)
 print(f"monk function {str}")
 
