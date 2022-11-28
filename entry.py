@@ -15,7 +15,12 @@ except:
     pass
 
 # inputimg= 'inference\\images\\DSC02328.jpg'     
-inputimg= 'inference\\images\\DSC03030.jpg'     
+# inputimg= 'inference\\images\\bus.jpg'     
+# inputimg= 'inference\\images\\image1.jpg'     
+inputimg='inference\\images\istockphoto-522785736-612x612.jpg'
+
+inputimg='inference\\images\crowded-mountain-summit-colorado_h.webp'
+inputimg='inference\\images\desktop.jpg'
 str = detect.detect_code(inputimg,False)
 print(f"monk function {str}")
 
