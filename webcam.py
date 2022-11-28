@@ -1,3 +1,4 @@
+# 這份code是助教的
 import os
 import cv2 as cv
 import numpy as np
