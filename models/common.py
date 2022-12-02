@@ -1429,7 +1429,7 @@ class WindowAttention(nn.Module):
             x = (attn @ v).transpose(1, 2).reshape(B_, N, C)
         except:
             #print(attn.dtype, v.dtype)
-            x = (attn.half() @ v).transpose(1, 2).reshape(B_, N, C)
+            x = (attn.Half() @ v).transpose(1, 2).reshape(B_, N, C)
         x = self.proj(x)
         x = self.proj_drop(x)
         return x
@@ -1755,7 +1755,7 @@ class WindowAttention_v2(nn.Module):
         try:
             x = (attn @ v).transpose(1, 2).reshape(B_, N, C)
         except:
-            x = (attn.half() @ v).transpose(1, 2).reshape(B_, N, C)
+            x = (attn.Half() @ v).transpose(1, 2).reshape(B_, N, C)
             
         x = self.proj(x)
         x = self.proj_drop(x)

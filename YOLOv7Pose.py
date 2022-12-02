@@ -1,4 +1,4 @@
-# line 32 err
+# 在cpu本機執行 .half 要改成 .float      line 27   line67
 
 import matplotlib.pyplot as plt
 import torch
@@ -24,7 +24,7 @@ if not file_exists:
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 weigths = torch.load('yolov7-w6-pose.pt',map_location='cpu')
 model = weigths['model']
-model = model.half().to(device)
+model = model.float().to(device)
 _ = model.eval()
  
 # video_path = '../inference/images/「中秋食月」摸獎影片.mp4'
@@ -64,7 +64,7 @@ while(cap.isOpened):
       image = transforms.ToTensor()(image)
       image = torch.tensor(np.array([image.numpy()]))
       image = image.to(device)
-      image = image.half()
+      image = image.float()
  
       # Get the start time.
       start_time = time.time()
