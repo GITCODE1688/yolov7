@@ -10,3 +10,6 @@
 > python entry.py   
 > python detect.py --weights yolov7.pt --conf 0.25 --img-size 640 --source inference/images/horses.jpg
 
+## references
+### yolo pose
+> https://learnopencv.com/yolov7-object-detection-paper-explanation-and-inference/#YOLOv7-Pose-Code

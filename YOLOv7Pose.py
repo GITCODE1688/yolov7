@@ -1,3 +1,5 @@
+# line 32 err
+
 import matplotlib.pyplot as plt
 import torch
 import cv2
@@ -20,12 +22,13 @@ if not file_exists:
     print(f'{file_name} 下載完成')
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-weigths = torch.load('yolov7-w6-pose.pt')
+weigths = torch.load('yolov7-w6-pose.pt',map_location='cpu')
 model = weigths['model']
 model = model.half().to(device)
 _ = model.eval()
  
-video_path = '../inference/images/「中秋食月」摸獎影片.mp4'
+# video_path = '../inference/images/「中秋食月」摸獎影片.mp4'
+video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\「中秋食月」摸獎影片.mp4'
 
 cap = cv2.VideoCapture(video_path)
 if (cap.isOpened() == False):
