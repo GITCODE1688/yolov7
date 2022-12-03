@@ -1,5 +1,5 @@
 # 在cpu本機執行 .half 要改成 .float      line 27   line67
-
+# select interpreter 要切換到到pyhtone的所在目錄，ex home nb，python 要切換到 anaconda 下才可以正常執行
 import matplotlib.pyplot as plt
 import torch
 import cv2
