@@ -30,7 +30,7 @@ _ = model.eval()
 # video_path = '../inference/images/「中秋食月」摸獎影片.mp4'
 # video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\「中秋食月」摸獎影片.mp4'
 # video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\IMG_1509.MOV'
-video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\DSC02331.jpg' ##abc
+# video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\DSC02331.jpg'
 
 cap = cv2.VideoCapture(video_path)
 if (cap.isOpened() == False):
