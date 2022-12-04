@@ -31,7 +31,7 @@ _ = model.eval()
 # video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\「中秋食月」摸獎影片.mp4'
 # video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\IMG_1509.MOV'
 # video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\DSC02331.jpg'
-
+video_path = r'C:\Users\saxjesus\Documents\vscode_project\yolo\yolov7\inference\images\VID_20221204_133106.mp4'
 cap = cv2.VideoCapture(video_path)
 if (cap.isOpened() == False):
   print('Error while trying to read video. Please check path again')
