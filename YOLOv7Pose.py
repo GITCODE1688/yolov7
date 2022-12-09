@@ -28,9 +28,9 @@ model = model.float().to(device)
 _ = model.eval()
  
 # video_path = '../inference/images/「中秋食月」摸獎影片.mp4'
-# video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\「中秋食月」摸獎影片.mp4'
+video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\摸獎影片.mp4'
 # video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\IMG_1509.MOV'
-video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\DSC02331.jpg'
+# video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\DSC02331.jpg'
 
 cap = cv2.VideoCapture(video_path)
 if (cap.isOpened() == False):
@@ -100,12 +100,17 @@ while(cap.isOpened):
               thickness=1,
               lineType=cv2.LINE_AA
           )
+          
+          # monk edit
+          print('{0:<20}  /  {1:<20}  /  {2:<20}  /  {3:<20}'.format(xmin,ymin,xmax,ymax))
+          time.sleep( 2 )
+          
  
       # Write the FPS on the current frame.
       cv2.putText(nimg, f"{fps:.3f} FPS", (15, 30), cv2.FONT_HERSHEY_SIMPLEX,
                   1, (0, 255, 0), 2)
       # Convert from BGR to RGB color format.
-      cv2.imshow('image', nimg)
+      # cv2.imshow('image', nimg)
       out.write(nimg)
       # Press `q` to exit.
       if cv2.waitKey(1) & 0xFF == ord('q'):
