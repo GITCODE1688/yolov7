@@ -57,6 +57,7 @@ while(cap.isOpened):
   ret, frame = cap.read()
   if ret:
       orig_image = frame
+      out.write(orig_image)
       image = cv2.cvtColor(orig_image, cv2.COLOR_BGR2RGB)
       image = letterbox(image, (frame_width), stride=64, auto=True)[0]
       image_ = image.copy()
@@ -64,12 +65,13 @@ while(cap.isOpened):
       image = torch.tensor(np.array([image.numpy()]))
       image = image.to(device)
       image = image.float()
- 
+      
       # Get the start time.
       start_time = time.time()
       with torch.no_grad():
           output, _ = model(image)
         # Get the end time.
+      
       end_time = time.time()
       # Get the fps.
       fps = 1 / (end_time - start_time)
@@ -83,6 +85,7 @@ while(cap.isOpened):
       nimg = image[0].permute(1, 2, 0) * 255
       nimg = nimg.cpu().numpy().astype(np.uint8)
       nimg = cv2.cvtColor(nimg, cv2.COLOR_RGB2BGR)
+      out.write(nimg)
       for idx in range(output.shape[0]):
           plot_skeleton_kpts(nimg, output[idx, 7:].T, 3)
  
@@ -101,6 +104,7 @@ while(cap.isOpened):
           # monk edit
           print('{0:<20}  /  {1:<20}  /  {2:<20}  /  {3:<20}'.format(xmin,ymin,xmax,ymax))
           time.sleep( 2 )
+          out.write(nimg)
           
  
       # Write the FPS on the current frame.
@@ -109,6 +113,7 @@ while(cap.isOpened):
       # Convert from BGR to RGB color format.
       cv2.imshow('image', nimg)
       out.write(nimg)
+            
       # Press `q` to exit.
       if cv2.waitKey(1) & 0xFF == ord('q'):
           break
