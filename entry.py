@@ -20,6 +20,9 @@ inputimg= 'inference\\images\\bus.jpg'
 # inputimg='inference\\images\istockphoto-522785736-612x612.jpg'
 # inputimg='inference\\images\crowded-mountain-summit-colorado_h.webp'
 inputimg = 'inference\\images\\bus.jpg'
+inputimg = 'inference\\images\\QRCU3392.JPG'
+
+
 
 # inputimg='inference\\images\\「中秋食月」摸獎影片.mp4'
 
