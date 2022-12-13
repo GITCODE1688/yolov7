@@ -22,10 +22,11 @@ model = model.float().to(device)
 _ = model.eval()
 
 
-video_path = 'fall6.mp4'
+# video_path = 'fall6.mp4'
+video_path = './inference/images/FIFA_1080p 00_05_09-00_05_27.mp4'
 #pass video to videocapture object
-# cap = cv2.VideoCapture(video_path)
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(video_path)
+# cap = cv2.VideoCapture(1)
 
 #check if videocapture not opened
 if (cap.isOpened() == False):
