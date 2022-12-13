@@ -31,7 +31,8 @@ _ = model.float().eval()
 # if torch.cuda.is_available():
 #     model.float().to(device)
 
-image = cv2.imread('./inference/images/DSC02331.jpg')
+image = cv2.imread('./inference/images/DSC02328.jpg')
+# image = cv2.imread('./inference/images/img_0650.jpg')
 image = letterbox(image, 960, stride=64, auto=True)[0]
 image_ = image.copy()
 image = transforms.ToTensor()(image)
