@@ -27,14 +27,9 @@ model = weigths['model']
 model = model.float().to(device)
 _ = model.eval()
  
-# video_path = '../inference/images/「中秋食月」摸獎影片.mp4'
-# video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\「中秋食月」摸獎影片.mp4'
-# video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\IMG_1509.MOV'
-# video_path = 'D:\workspace\VSCodeProject\YOLO\yolov7\inference\images\DSC02331.jpg'
-video_path = r'C:\Users\saxjesus\Documents\vscode_project\yolo\yolov7\inference\images\VID_20221204_133106.mp4'
-video_path = r'C:\Users\saxjesus\Documents\vscode_project\yolo\yolov7\inference\images\IMG_1581~1.mp4'
-video_path = r'C:\Users\saxjesus\Documents\vscode_project\yolo\yolov7\inference\images\世足首位帽子戲法的男人Ramos.mp4'
-cap = cv2.VideoCapture(video_path)
+
+video_path = '../inference/images/「中秋食月」摸獎影片 00_01_00-00_01_20.mp4'
+cap = cv2.VideoCapture(0)
 if (cap.isOpened() == False):
   print('Error while trying to read video. Please check path again')
  
@@ -102,6 +97,11 @@ while(cap.isOpened):
               thickness=1,
               lineType=cv2.LINE_AA
           )
+          
+          # monk edit
+          print('{0:<20}  /  {1:<20}  /  {2:<20}  /  {3:<20}'.format(xmin,ymin,xmax,ymax))
+          time.sleep( 2 )
+          
  
       # Write the FPS on the current frame.
       cv2.putText(nimg, f"{fps:.3f} FPS", (15, 30), cv2.FONT_HERSHEY_SIMPLEX,
