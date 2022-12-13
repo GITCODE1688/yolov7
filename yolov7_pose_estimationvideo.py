@@ -1,3 +1,4 @@
+from PIL import ImageFont, ImageDraw, Image    # 載入 PIL 相關函式庫
 import matplotlib.pyplot as plt
 import torch
 import cv2
@@ -61,17 +62,17 @@ while(cap.isOpened):
         
         #store frame
         orig_image = frame
-        out.write(orig_image)
+        for i in range(50) :
+            out.write(orig_image)
         #convert frame to RGB
         image = cv2.cvtColor(orig_image, cv2.COLOR_BGR2RGB)
         image = letterbox(image, (frame_width), stride=64, auto=True)[0]
         image_ = image.copy()
         image = transforms.ToTensor()(image)
         image = torch.tensor(np.array([image.numpy()]))
-        out.write(orig_image)
-        out.write(orig_image)
-        out.write(orig_image)
-        out.write(orig_image)
+        for i in range(50) :
+            out.write(orig_image)
+        
         #convert image data to device
         image = image.float().to(device)  
         
@@ -90,7 +91,8 @@ while(cap.isOpened):
         
         #reshape image format to (BGR)
         im0 = cv2.cvtColor(im0, cv2.COLOR_RGB2BGR)
-        out.write(im0)
+        for i in range(50) :
+            out.write(im0)
         for idx in range(output.shape[0]):
             #plot_skeleton_kpts(im0, output[idx, 7:].T, 3)
             xmin, ymin = (output[idx, 2]-output[idx, 4]/2), (output[idx, 3]-output[idx, 5]/2)
@@ -113,10 +115,20 @@ while(cap.isOpened):
             #Plotting key points on Image
               cv2.rectangle(im0,(int(xmin), int(ymin)),(int(xmax), int(ymax)),color=(0, 0, 255),
                   thickness=5,lineType=cv2.LINE_AA)
-              cv2.putText(im0, 'Person Fell down 老人跌倒了', (11, 100), 0, 1, [0, 0, 2550], thickness=3, lineType=cv2.LINE_AA)
+              
+            #   cv2.putText(im0, 'Person Fell down 老人跌倒了', (11, 100), 0, 1, [0, 0, 255], thickness=3, lineType=cv2.LINE_AA)
+              
+              fontpath = 'NotoSansTC-Regular.otf'          # 設定字型路徑
+              font = ImageFont.truetype(fontpath, 35)      # 設定字型與文字大小
+              imgPil = Image.fromarray(im0) 
+              draw = ImageDraw.Draw(imgPil)                # 準備開始畫畫
+              draw.text((10, 50), 'Person Fell down 人跌倒了', fill=(0, 0, 255), font=font)  # 畫入文字，\n 表示換行
+              im0 = np.array(imgPil)
+
             #   bot.sendMessage(receiver_id, "Person Fall Detected")
               filename = './inference/savedImage.jpg'
-              cv2.imwrite(filename, im0)
+              for i in range(10) :
+                  cv2.imwrite(filename, im0)
             #   bot.sendPhoto(receiver_id, photo=open(filename, 'rb'))
               os.remove(filename)
               cv2.imshow('image', im0)
@@ -126,8 +138,8 @@ while(cap.isOpened):
                            
         #add FPS on top of video
         # cv2.putText(im0, f'FPS: {int(fps)}', (11, 100), 0, 1, [255, 0, 0], thickness=2, lineType=cv2.LINE_AA)
-        
-        cv2.imshow('image', im0)
+        for i in range(50) :
+            cv2.imshow('image', im0)
         out.write(im0)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
