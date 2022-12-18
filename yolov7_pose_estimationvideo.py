@@ -23,7 +23,7 @@ _ = model.eval()
 
 
 # video_path = 'fall6.mp4'
-video_path = './inference/images/FIFA_1080p 00_05_09-00_05_27.mp4'
+video_path = './inference/images/FIFA_720p 00_05_05-00_05_10.mp4'
 #pass video to videocapture object
 cap = cv2.VideoCapture(video_path)
 # cap = cv2.VideoCapture(1)
@@ -63,16 +63,16 @@ while(cap.isOpened):
         
         #store frame
         orig_image = frame
-        for i in range(50) :
-            out.write(orig_image)
+        # for i in range(25) :
+        out.write(orig_image)
         #convert frame to RGB
         image = cv2.cvtColor(orig_image, cv2.COLOR_BGR2RGB)
         image = letterbox(image, (frame_width), stride=64, auto=True)[0]
         image_ = image.copy()
         image = transforms.ToTensor()(image)
         image = torch.tensor(np.array([image.numpy()]))
-        for i in range(50) :
-            out.write(orig_image)
+        # for i in range(50) :
+        out.write(orig_image)
         
         #convert image data to device
         image = image.float().to(device)  
@@ -92,10 +92,12 @@ while(cap.isOpened):
         
         #reshape image format to (BGR)
         im0 = cv2.cvtColor(im0, cv2.COLOR_RGB2BGR)
-        for i in range(50) :
-            out.write(im0)
+        # for i in range(25) :
+        out.write(im0)
         for idx in range(output.shape[0]):
             #plot_skeleton_kpts(im0, output[idx, 7:].T, 3)
+            for i in range(500):
+                plot_skeleton_kpts(im0, output[idx, 7:].T, 3)
             xmin, ymin = (output[idx, 2]-output[idx, 4]/2), (output[idx, 3]-output[idx, 5]/2)
             xmax, ymax = (output[idx, 2]+output[idx, 4]/2), (output[idx, 3]+output[idx, 5]/2)
 
@@ -112,6 +114,7 @@ while(cap.isOpened):
             left_foot_y = output[idx][53]
             right_foot_y = output[idx][56]
             
+
             if left_shoulder_y > left_foot_y - len_factor and left_body_y > left_foot_y - (len_factor / 2) and left_shoulder_y > left_body_y - (len_factor / 2):
             #Plotting key points on Image
               cv2.rectangle(im0,(int(xmin), int(ymin)),(int(xmax), int(ymax)),color=(0, 0, 255),
@@ -120,15 +123,15 @@ while(cap.isOpened):
             #   cv2.putText(im0, 'Person Fell down 老人跌倒了', (11, 100), 0, 1, [0, 0, 255], thickness=3, lineType=cv2.LINE_AA)
               
               fontpath = 'NotoSansTC-Regular.otf'          # 設定字型路徑
-              font = ImageFont.truetype(fontpath, 35)      # 設定字型與文字大小
+              font = ImageFont.truetype(fontpath, 65)      # 設定字型與文字大小
               imgPil = Image.fromarray(im0) 
               draw = ImageDraw.Draw(imgPil)                # 準備開始畫畫
-              draw.text((10, 50), 'Person Fell down 人跌倒了', fill=(0, 0, 255), font=font)  # 畫入文字，\n 表示換行
+              draw.text((30, 120), 'Person Fell down 人員摔倒了', fill=(0, 0, 255), font=font)  # 畫入文字，\n 表示換行
               im0 = np.array(imgPil)
 
             #   bot.sendMessage(receiver_id, "Person Fall Detected")
               filename = './inference/savedImage.jpg'
-              for i in range(10) :
+              for i in range(1000) :
                   cv2.imwrite(filename, im0)
             #   bot.sendPhoto(receiver_id, photo=open(filename, 'rb'))
               os.remove(filename)
@@ -139,8 +142,8 @@ while(cap.isOpened):
                            
         #add FPS on top of video
         # cv2.putText(im0, f'FPS: {int(fps)}', (11, 100), 0, 1, [255, 0, 0], thickness=2, lineType=cv2.LINE_AA)
-        for i in range(50) :
-            cv2.imshow('image', im0)
+        
+        cv2.imshow('image', im0)
         out.write(im0)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
