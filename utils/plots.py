@@ -473,6 +473,9 @@ def plot_skeleton_kpts(im, kpts, steps, orig_shape=None):
                     continue
             cv2.circle(im, (int(x_coord), int(y_coord)), radius, (int(r), int(g), int(b)), -1)
 
+            # 畫面中顯示座標            
+            text = f'{int(x_coord)},{int(y_coord)}'
+            cv2.putText(im,text,(int(x_coord)+50, int(y_coord)-10),cv2.FONT_HERSHEY_COMPLEX_SMALL,0.5,(int(r), int(g), int(b)),thickness=1, lineType=cv2.LINE_AA)
     for sk_id, sk in enumerate(skeleton):
         r, g, b = pose_limb_color[sk_id]
         pos1 = (int(kpts[(sk[0]-1)*steps]), int(kpts[(sk[0]-1)*steps+1]))
