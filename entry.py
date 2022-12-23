@@ -26,7 +26,7 @@ inputimg = 'inference\\images\\desktop.JPG'
 
 # inputimg='inference\\images\\「中秋食月」摸獎影片.mp4'
 
-# inputimg = '0'                                              #webcam
+inputimg = '0'                                              #webcam
 
 str = detect.detect_code(inputimg,False)
 print(f"monk function {str}")

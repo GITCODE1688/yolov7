@@ -120,16 +120,16 @@ while(cap.isOpened):
               cv2.rectangle(im0,(int(xmin), int(ymin)),(int(xmax), int(ymax)),color=(0, 0, 255),
                   thickness=5,lineType=cv2.LINE_AA)
               
-            #   cv2.putText(im0, 'Person Fell down 老人跌倒了', (11, 100), 0, 1, [0, 0, 255], thickness=3, lineType=cv2.LINE_AA)
+            #cv2.putText(im0, 'Person Fell down 老人跌倒了', (11, 100), 0, 1, [0, 0, 255], thickness=3, lineType=cv2.LINE_AA)
               
-              fontpath = 'NotoSansTC-Regular.otf'          # 設定字型路徑
-              font = ImageFont.truetype(fontpath, 65)      # 設定字型與文字大小
+              fontpath = 'NotoSansTC-Regular.otf'         
+              font = ImageFont.truetype(fontpath, 65)     
               imgPil = Image.fromarray(im0) 
-              draw = ImageDraw.Draw(imgPil)                # 準備開始畫畫
-              draw.text((30, 120), 'Person Fell down 人員摔倒了', fill=(0, 0, 255), font=font)  # 畫入文字，\n 表示換行
+              draw = ImageDraw.Draw(imgPil)               
+              draw.text((30, 120), 'Person Fell down 人員摔倒了', fill=(0, 0, 255), font=font) 
               im0 = np.array(imgPil)
 
-            #   bot.sendMessage(receiver_id, "Person Fall Detected")
+            #bot.sendMessage(receiver_id, "Person Fall Detected")
               filename = './inference/savedImage.jpg'
               for i in range(1000) :
                   cv2.imwrite(filename, im0)
